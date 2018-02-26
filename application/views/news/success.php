@@ -1,3 +1,3 @@
 <div class="container">
-  <h2 class="col-md-6 alert alert-success" role="success">Success</h2>
+  <h2 class="col-md-6 col-md-offset-3 alert alert-success text-center" role="success">Success</h2>
 </div>
