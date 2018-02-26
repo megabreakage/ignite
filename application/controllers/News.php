@@ -7,7 +7,7 @@ class News extends CI_Controller{
 
     $this->load->view('templates/header', $data);
     $this->load->view('news/index', $data);
-    $this->load->view('templates/footer', $data);
+    $this->load->view('templates/footer');
   }
 
   public function view($slug = NULL){
@@ -21,5 +21,26 @@ class News extends CI_Controller{
     $this->load->view('templates/header', $data);
     $this->load->view('news/view', $data);
     $this->load->view('templates/footer', $data);
+  }
+
+  public function create(){
+
+    $data['title'] = 'Create New Item';
+
+    $this->form_validation->set_rules('title', 'Title', 'required');
+    $this->form_validation->set_rules('text', 'Text', 'required');
+
+    if ($this->form_validation->run() === FALSE) {
+      $this->load->view('templates/header', $data);
+      $this->load->view('news/create');
+      $this->load->view('templates/footer');
+    } else {
+      $this->news_model->news_create();
+      $this->load->view('templates/header', $data);
+      $this->load->view('news/success');
+      $this->load->view('templates/footer');
+    }
+
+
   }
 } ?>
